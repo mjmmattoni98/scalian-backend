@@ -1,0 +1,17 @@
+meta {
+  name: Upload candidate
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/candidates/upload
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  name: John
+  surname: Doe
+  file: @file(C:\Users\javie\Downloads\candidate1.xlsx)
+}
