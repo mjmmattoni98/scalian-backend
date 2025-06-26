@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import * as XLSX from 'xlsx';
 import { CandidateExcelDto } from './dto';
 
@@ -13,10 +13,31 @@ export class CandidatesService {
       | boolean
     )[][];
 
+    const seniority = String(raw_data[0][0]).toLowerCase();
+    const years = Number(raw_data[0][1]);
+    const availabilityRaw = raw_data[0][2];
+    const availability = availabilityRaw === 'true';
+
+    if (seniority !== 'junior' && seniority !== 'senior') {
+      throw new BadRequestException('Seniority must be "junior" or "senior"');
+    }
+    if (isNaN(years) || years < 0) {
+      throw new BadRequestException(
+        'Years must be a number greater or equal than 0',
+      );
+    }
+    if (
+      typeof availabilityRaw !== 'boolean' &&
+      availabilityRaw !== 'true' &&
+      availabilityRaw !== 'false'
+    ) {
+      throw new BadRequestException('Availability must be a boolean');
+    }
+
     return {
-      seniority: String(raw_data[0][0]),
-      years: Number(raw_data[0][1]),
-      availability: raw_data[0][2] === 'true' || raw_data[0][2] === true,
+      seniority,
+      years,
+      availability,
     };
   }
 }
