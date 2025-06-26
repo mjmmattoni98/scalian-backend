@@ -9,7 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { CandidatesService } from './candidates.service';
 import { CreateCandidateDto } from './dto';
 
-@Controller('api/candidates')
+@Controller('candidates')
 export class CandidatesController {
   constructor(private readonly candidatesService: CandidatesService) {}
 
