@@ -21,8 +21,8 @@ export class CandidatesController {
   ) {
     const excelData = this.candidatesService.parseExcel(file.buffer);
     return {
-      name: body.name,
-      surname: body.surname,
+      name: body.name.toUpperCase(),
+      surname: body.surname.toUpperCase(),
       ...excelData,
     };
   }
