@@ -3,6 +3,7 @@
 A NestJS backend for candidate data upload and validation.
 
 ## Features
+
 - Upload candidate data via Excel file and form fields
 - Validates:
   - Name and surname (from form)
@@ -15,11 +16,13 @@ A NestJS backend for candidate data upload and validation.
 ## Getting Started
 
 ### Install dependencies
+
 ```bash
 npm install
 ```
 
 ### Run the server
+
 ```bash
 npm run start:dev
 ```
@@ -29,6 +32,7 @@ The API will be available at `http://localhost:3000/api` by default.
 ## Usage
 
 ### Upload Candidate Endpoint
+
 - **POST** `/api/candidates/upload`
 - **Body (form-data):**
   - `name`: string
@@ -36,6 +40,7 @@ The API will be available at `http://localhost:3000/api` by default.
   - `file`: Excel file (.xlsx) with columns: seniority, years, availability (one row)
 
 #### Example with Postman
+
 - Set method to POST and URL to `http://localhost:3000/api/candidates/upload`
 - In the Body tab, select `form-data` and add:
   - `name` (Text)
@@ -43,6 +48,7 @@ The API will be available at `http://localhost:3000/api` by default.
   - `file` (File)
 
 #### Example Response
+
 ```json
 {
   "name": "JOHN",
@@ -56,11 +62,7 @@ The API will be available at `http://localhost:3000/api` by default.
 ## Testing
 
 Run all tests:
+
 ```bash
 npm test
 ```
-
-## Project Structure
-- `src/candidates/` — Candidate upload logic, controller, service, DTOs
-- `src/app.module.ts` — Main application module
-- `src/main.ts` — Entry point, sets global API prefix
